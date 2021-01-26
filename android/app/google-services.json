@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "362864548963",
+    "firebase_url": "https://wallpaper-app-b3fec.firebaseio.com",
+    "project_id": "wallpaper-app-b3fec",
+    "storage_bucket": "wallpaper-app-b3fec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362864548963:android:29ea3ae89d7589965f6c56",
+        "android_client_info": {
+          "package_name": "com.fidelisakilan.pixev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362864548963-4gg9hka06pa8ah8m5q05uq48077sfjt5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr4ylP1d-sqtk7-9zoFinLox_dqPpKq8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362864548963-4gg9hka06pa8ah8m5q05uq48077sfjt5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
