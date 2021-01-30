@@ -11,7 +11,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,8 +36,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List urls;
-
+  List<String> urls =[];
   Future<void> getImage() async {
     firebase_storage.FirebaseStorage storage =
         firebase_storage.FirebaseStorage.instance;
@@ -48,7 +46,7 @@ class _HomeState extends State<Home> {
     result.items.forEach((firebase_storage.Reference ref) {
       print('Found file: $ref');
       print(ref.getDownloadURL().toString());
-      urls.add(ref.getDownloadURL());
+      urls.add(ref.getDownloadURL().toString());
     });
     result.prefixes.forEach((firebase_storage.Reference ref) {
       print('Found directory: $ref');
@@ -56,14 +54,20 @@ class _HomeState extends State<Home> {
   }
 
   Future<String> downloadUrlEx() async {
-    return await firebase_storage.FirebaseStorage.instance
+    await firebase_storage.FirebaseStorage.instance
         .ref()
         .child('walls')
         .child('gradients')
         .child('image2.jpg')
-        .getDownloadURL();
+        .getDownloadURL().toString();
   }
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("Hello started app");
+    print(downloadUrlEx());
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
