@@ -21,12 +21,13 @@ class MyApp extends StatelessWidget {
           create: (_) => AuthenticationService(FirebaseAuth.instance),
         ),
         StreamProvider(
+          initialData: null,
           create: (context) =>
               context.read<AuthenticationService>().authStateChanges,
         )
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
+      child: MaterialApp( 
+        title: 'Wallpaper App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
