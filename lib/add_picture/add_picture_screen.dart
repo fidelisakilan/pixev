@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -14,6 +15,7 @@ class _AddPictureScreenState extends State<AddPictureScreen> {
 
   UploadTask _uploadTask;
   double progressPercent = 0.0;
+  DocumentReference imagedocRef;
 
   Future<void> startUpload() async {
     // String filePath = 'images/${DateTime.now()}.png';
@@ -40,8 +42,13 @@ class _AddPictureScreenState extends State<AddPictureScreen> {
       }
     });
     var downloadUrl = await (await _uploadTask).ref.getDownloadURL();
+    await saveImages(downloadUrl,imagedocRef);
   }
-
+@override
+  void initState() {
+    super.initState();
+    imagedocRef = FirebaseFirestore.instance.collection('images').doc();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,5 +154,9 @@ class _AddPictureScreenState extends State<AddPictureScreen> {
       progressPercent = 0;
       _imageFile = null;
     });
+  }
+
+  Future<void> saveImages(String imageUrl, DocumentReference ref) async{
+    ref.set({"images": FieldValue.arrayUnion([imageUrl])});
   }
 }
